@@ -17,7 +17,7 @@ const SubCategories = () => {
       setSubCategories(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     fetchData();
-  }, [subCategories]);
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,7 +26,7 @@ const SubCategories = () => {
       setCategories(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     fetchData();
-  }, [categories]);
+  }, []);
 
   const onCreate = (e) => {
     e.preventDefault();

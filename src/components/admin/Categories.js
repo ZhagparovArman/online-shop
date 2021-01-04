@@ -15,7 +15,7 @@ const Categories = () => {
       setCategories(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     fetchData();
-  }, [categories]);
+  }, []);
 
   const onCreate = (e) => {
     e.preventDefault();

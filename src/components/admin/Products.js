@@ -21,7 +21,7 @@ const Products = () => {
       setCategories(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     fetchData();
-  }, [categories]);
+  }, []);
 
   const onFileChange = async (e) => {
     const file = e.target.files[0];
@@ -63,7 +63,7 @@ const Products = () => {
       setProducts(products.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     fetchUsers();
-  }, [products]);
+  }, []);
   return (
     <>
       <form onSubmit={onSubmit}>

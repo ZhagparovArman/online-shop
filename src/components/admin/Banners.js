@@ -20,7 +20,7 @@ const Banners = () => {
       setSubCategories(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     fetchData();
-  }, [subCategories]);
+  }, []);
 
   const onFileChange = async (e) => {
     const file = e.target.files[0];
@@ -59,7 +59,7 @@ const Banners = () => {
       setBanners(banners.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     fetchUsers();
-  }, [banners]);
+  }, []);
 
   return (
     <>
@@ -101,15 +101,13 @@ const Banners = () => {
       </form>
 
       <ul>
-        {banners.map((banner) => {
-          return (
-            <Banner
-              key={banner.id}
-              subCategories={subCategories}
-              banner={banner}
-            />
-          );
-        })}
+        {banners.map((banner) => (
+          <Banner
+            key={banner.id}
+            subCategories={subCategories}
+            banner={banner}
+          />
+        ))}
       </ul>
     </>
   );

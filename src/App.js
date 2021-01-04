@@ -8,10 +8,10 @@ import firebase from "./firebase";
 function App() {
   return (
     <>
-      {/* <Categories />
-      <SubCategories /> */}
+      <Categories />
+      <SubCategories />
       <Banners />
-      {/* <Products /> */}
+      <Products />
     </>
   );
 }
