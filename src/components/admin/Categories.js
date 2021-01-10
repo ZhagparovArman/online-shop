@@ -9,13 +9,19 @@ const Categories = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const db = firebase.firestore();
-      const data = await db.collection("categories").get();
-      setCategories(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
+    // const fetchData = async () => {
+    //   const db = firebase.firestore();
+    //   const data = await db.collection("categories").get();
+    //   setCategories(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    // };
     fetchData();
   }, []);
+
+  const fetchData = async () => {
+    const db = firebase.firestore();
+    const data = await db.collection("categories").get();
+    setCategories(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
 
   const onCreate = (e) => {
     e.preventDefault();
@@ -25,6 +31,7 @@ const Categories = () => {
       feature: feature,
       description: description,
     });
+    fetchData();
     setName("");
     setFeature("");
     setDescription("");
@@ -52,7 +59,13 @@ const Categories = () => {
         <button>Создать категорию</button>
       </form>
       {categories.map((category) => {
-        return <Category key={category.id} category={category} />;
+        return (
+          <Category
+            key={category.id}
+            category={category}
+            fetchData={fetchData}
+          />
+        );
       })}
     </div>
   );

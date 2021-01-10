@@ -1,7 +1,7 @@
 import { useState } from "react";
 import firebase from "../../firebase";
 
-const Category = ({ category }) => {
+const Category = ({ category, fetchData }) => {
   const [name, setName] = useState(category.name);
   const [feature, setFeature] = useState(category.feature);
   const [description, setDescription] = useState(category.description);
@@ -11,11 +11,13 @@ const Category = ({ category }) => {
     db.collection("categories")
       .doc(category.id)
       .set({ ...category, name, feature, description });
+    fetchData();
   };
 
   const onDelete = () => {
     const db = firebase.firestore();
     db.collection("categories").doc(category.id).delete();
+    fetchData();
   };
   return (
     <>

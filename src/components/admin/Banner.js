@@ -22,7 +22,7 @@ const Banner = ({ subCategories, banner }) => {
   const deleteUrl = (name) => {
     const storageRef = firebase.storage().ref("images").child(name);
     storageRef.delete();
-    setFileUrl({ url: "", title: "" });
+    setFileUrl({});
   };
 
   const onEdit = () => {

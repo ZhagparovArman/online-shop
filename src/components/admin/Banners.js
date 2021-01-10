@@ -54,11 +54,11 @@ const Banners = () => {
   };
 
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchBanners = async () => {
       const banners = await db.collection("banners").get();
       setBanners(banners.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
-    fetchUsers();
+    fetchBanners();
   }, []);
 
   return (

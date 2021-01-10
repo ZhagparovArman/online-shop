@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import firebase from "../../firebase";
+import Product from "./Product";
 
 const db = firebase.firestore();
 
@@ -118,6 +119,9 @@ const Products = () => {
 
         <button>Submit</button>
       </form>
+      {products.map((product) => (
+        <Product key={product.id} product={product} categories={categories} />
+      ))}
     </>
   );
 };

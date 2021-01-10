@@ -8,9 +8,9 @@ import firebase from "./firebase";
 function App() {
   return (
     <>
-      <Categories />
+      {/* <Categories />
       <SubCategories />
-      <Banners />
+      <Banners /> */}
       <Products />
     </>
   );
