@@ -7,14 +7,13 @@ const storageRef = firebase.storage().ref("images");
 const Product = ({ product, categories }) => {
   const [selectedCategory, setSelectedCategory] = useState(product.category);
   const [name, setName] = useState(product.name);
-  const [feature, setFeature] = useState({
-    title: product.feature.title,
-    value: product.feature.value,
-  });
+  const [feature, setFeature] = useState(product.feature);
   const [description, setDescription] = useState(product.description);
   const [fileUrl, setFileUrl] = useState(product.image);
   const [price, setPrice] = useState(product.price);
   const [isPopular, setIsPopular] = useState(product.isPopular);
+  const [featTitle, setFeatTitle] = useState("");
+  const [featValue, setFeatValue] = useState("");
 
   const onFileChange = async (e) => {
     const file = e.target.files[0];
@@ -30,6 +29,27 @@ const Product = ({ product, categories }) => {
     storageRef.delete();
     const newFileUrl = fileUrl.filter((file) => file.title !== name);
     setFileUrl([...newFileUrl]);
+  };
+
+  const updateTitle = (e) => {
+    // e.preventDefault();
+    setFeatTitle(e.target.value);
+  };
+
+  const updateValue = (e) => {
+    // e.preventDefault();
+    setFeatValue(e.target.value);
+  };
+
+  const updateFeature = (e, feat) => {
+    e.preventDefault();
+    const newFeature = feature.map((f) => {
+      if (f.title === feat.title) {
+        f.title = featTitle;
+        f.value = featValue;
+      }
+    });
+    setFeature([...newFeature]);
   };
 
   const onEdit = () => {
@@ -95,17 +115,25 @@ const Product = ({ product, categories }) => {
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
-      <input
-        type="text"
-        placeholder="название характеристики"
-        value={feature.title}
-        onChange={(e) => setFeature({ ...feature, title: e.target.value })}
-      />
-      <textarea
-        placeholder="значение характеристики"
-        value={feature.value}
-        onChange={(e) => setFeature({ ...feature, value: e.target.value })}
-      />
+      {feature.map((feat) => {
+        <div>
+          <input
+            type="text"
+            placeholder="название характеристики"
+            value={feat.title}
+            onChange={(e) => updateTitle(e)}
+          />
+          <input
+            placeholder="значение характеристики"
+            value={feat.value}
+            onChange={(e) => updateValue(e)}
+          />
+          <button onClick={(e) => updateFeature(e, feat)}>
+            update feature
+          </button>
+        </div>;
+      })}
+
       <input
         type="checkbox"
         value={isPopular}

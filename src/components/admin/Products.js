@@ -9,11 +9,13 @@ const Products = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [name, setName] = useState("");
-  const [feature, setFeature] = useState({ title: "", value: "" });
+  const [feature, setFeature] = useState([]);
   const [description, setDescription] = useState("");
   const [fileUrl, setFileUrl] = useState([]);
   const [price, setPrice] = useState("");
   const [isPopular, setIsPopular] = useState(false);
+  const [featTitle, setFeatTitle] = useState("");
+  const [featValue, setFeatValue] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,6 +40,13 @@ const Products = () => {
     storageRef.delete();
   };
 
+  const addFeature = (e) => {
+    e.preventDefault();
+    setFeature([...feature, { title: featTitle, value: featValue }]);
+    setFeatTitle("");
+    setFeatValue("");
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -49,13 +58,17 @@ const Products = () => {
       image: fileUrl,
       price: price,
       category: selectedCategory,
-      feature: {
-        title: feature.title,
-        value: feature.value,
-      },
+      feature: feature,
       description: description,
       isPopular: isPopular,
     });
+    setFeature([]);
+    setFileUrl([]);
+    setName("");
+    setDescription("");
+    setIsPopular("");
+    setSelectedCategory("");
+    setPrice("");
   };
 
   useEffect(() => {
@@ -94,17 +107,28 @@ const Products = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <input
-          type="text"
-          placeholder="название характеристики"
-          value={feature.title}
-          onChange={(e) => setFeature({ ...feature, title: e.target.value })}
-        />
-        <textarea
-          placeholder="значение характеристики"
-          value={feature.value}
-          onChange={(e) => setFeature({ ...feature, value: e.target.value })}
-        />
+        <div>
+          <input
+            type="text"
+            placeholder="название характеристики"
+            value={featTitle}
+            onChange={(e) => setFeatTitle(e.target.value)}
+          />
+          <input
+            placeholder="значение характеристики"
+            value={featValue}
+            onChange={(e) => setFeatValue(e.target.value)}
+          />
+          <button onClick={addFeature}>add feature</button>
+        </div>
+        <div>
+          {feature.map((feat) => (
+            <div>
+              <p>{feat.title}</p>
+              <p>{feat.value}</p>
+            </div>
+          ))}
+        </div>
         <input
           type="checkbox"
           value={isPopular}
