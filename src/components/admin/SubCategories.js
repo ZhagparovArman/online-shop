@@ -3,22 +3,24 @@ import firebase from "../../firebase";
 import SubCategory from "./SubCategory";
 import Modal from "../shared/Modal";
 import "../../assets/sass/admin/shared.scss";
+import "../../assets/sass/admin/sub-categories.scss";
 
 const SubCategories = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
-  const [feature, setFeature] = useState("");
+  // const [feature, setFeature] = useState("");
   const [description, setDescription] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [subCategories, setSubCategories] = useState([]);
 
+  const fetchData = async () => {
+    const db = firebase.firestore();
+    const data = await db.collection("subCategories").get();
+    setSubCategories(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      const db = firebase.firestore();
-      const data = await db.collection("subCategories").get();
-      setSubCategories(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
     fetchData();
   }, []);
 
@@ -36,14 +38,16 @@ const SubCategories = () => {
     const db = firebase.firestore();
     db.collection("subCategories").add({
       name: name,
-      feature: feature,
+      // feature: feature,
       description: description,
       category: selectedCategory,
     });
     setName("");
-    setFeature("");
+    // setFeature("");
     setDescription("");
     setSelectedCategory("");
+    setIsOpen(false);
+    fetchData();
   };
   return (
     <div className="sub-categories">
@@ -76,12 +80,12 @@ const SubCategories = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <input
+          {/* <input
             type="text"
             placeholder="Характеристика"
             value={feature}
             onChange={(e) => setFeature(e.target.value)}
-          />
+          /> */}
           <textarea
             placeholder="Описание"
             value={description}
@@ -90,16 +94,18 @@ const SubCategories = () => {
           <button className="btn-submit">Сохранить</button>
         </form>
       </Modal>
-
-      {subCategories.map((subCategory) => {
-        return (
-          <SubCategory
-            key={subCategory.id}
-            subCategory={subCategory}
-            categories={categories}
-          />
-        );
-      })}
+      <div className="sub-category">
+        {subCategories.map((subCategory) => {
+          return (
+            <SubCategory
+              key={subCategory.id}
+              subCategory={subCategory}
+              categories={categories}
+              fetchData={fetchData}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };

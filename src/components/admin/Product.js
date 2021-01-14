@@ -140,6 +140,7 @@ const Product = ({ product, categories }) => {
       <input
         type="checkbox"
         value={isPopular}
+        checked={isPopular}
         onChange={(e) => setIsPopular(!isPopular)}
       />
       <input
@@ -148,8 +149,12 @@ const Product = ({ product, categories }) => {
         value={price}
         onChange={(e) => setPrice(e.target.value)}
       />
-      <button onClick={onEdit}>edit</button>
-      <button onClick={onDelete}>Delete</button>
+      <button className="btn-edit" onClick={onEdit}>
+        Редактировать
+      </button>
+      <button className="btn-delete" onClick={onDelete}>
+        Удалить
+      </button>
     </>
   );
 };

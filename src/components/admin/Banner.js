@@ -72,6 +72,7 @@ const Banner = ({ subCategories, banner }) => {
       <input
         type="checkbox"
         value={showPrice}
+        checked={showPrice}
         onChange={(e) => setShowPrice(!showPrice)}
       />
       <input
@@ -80,8 +81,12 @@ const Banner = ({ subCategories, banner }) => {
         value={price}
         onChange={(e) => setPrice(e.target.value)}
       />
-      <button onClick={onEdit}>edit</button>
-      <button onClick={onDelete}>Delete</button>
+      <button className="btn-edit" onClick={onEdit}>
+        Редактировать
+      </button>
+      <button className="btn-delete" onClick={onDelete}>
+        Удалить
+      </button>
       <br />
     </>
   );
