@@ -1,5 +1,7 @@
 import { useState } from "react";
 import firebase from "../../firebase";
+import Modal from "../shared/Modal";
+import "../../assets/sass/admin/shared.scss";
 
 const SubCategory = ({ subCategory, categories }) => {
   const [name, setName] = useState(subCategory.name);
@@ -59,8 +61,12 @@ const SubCategory = ({ subCategory, categories }) => {
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
-      <button onClick={edit}>Edit</button>
-      <button onClick={deleteSub}>Delete</button>
+      <button className="btn-edit" onClick={edit}>
+        Редактировать
+      </button>
+      <button className="btn-delete" onClick={deleteSub}>
+        Удалить
+      </button>
     </>
   );
 };

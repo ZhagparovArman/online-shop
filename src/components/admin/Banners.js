@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
 import firebase from "../../firebase";
 import Banner from "./Banner";
+import Modal from "../shared/Modal";
+import "../../assets/sass/admin/shared.scss";
+import "../../assets/sass/admin/banners.scss";
 
 const db = firebase.firestore();
 
 const Banners = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [fileUrl, setFileUrl] = useState("");
   const [banners, setBanners] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
@@ -63,42 +67,54 @@ const Banners = () => {
 
   return (
     <>
-      <form onSubmit={onSubmit}>
-        <select
-          value={selectedSubCategory}
-          onChange={(e) => setSelectedSubCategory(e.target.value)}
-          name="categories"
-        >
-          <option defaultValue="">не созданы</option>
-          {subCategories.map((subCategory) => {
-            return (
-              <option key={subCategory.id} value={subCategory.name}>
-                {subCategory.name}
-              </option>
-            );
-          })}
-        </select>
-        <input type="file" onChange={onFileChange} />
-        <input
-          type="text"
-          placeholder="Название"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          type="checkbox"
-          value={showPrice}
-          onChange={(e) => setShowPrice(!showPrice)}
-        />
-        <input
-          type="number"
-          placeholder="Цена"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
+      <h1>Баннеры</h1>
+      <button className="open-modal" onClick={() => setIsOpen(true)}>
+        Создать баннер
+      </button>
+      <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+        <button className="btn-close" onClick={() => setIsOpen(false)}>
+          X
+        </button>
+        <form onSubmit={onSubmit}>
+          <select
+            value={selectedSubCategory}
+            onChange={(e) => setSelectedSubCategory(e.target.value)}
+            name="categories"
+          >
+            <option defaultValue="">не созданы</option>
+            {subCategories.map((subCategory) => {
+              return (
+                <option key={subCategory.id} value={subCategory.name}>
+                  {subCategory.name}
+                </option>
+              );
+            })}
+          </select>
+          <input type="file" onChange={onFileChange} />
+          <input
+            type="text"
+            placeholder="Название"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <div className="banner-price">
+            <input
+              className="show-price"
+              type="checkbox"
+              value={showPrice}
+              onChange={(e) => setShowPrice(!showPrice)}
+            />
+            <input
+              type="number"
+              placeholder="Цена"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+            />
+          </div>
 
-        <button>Submit</button>
-      </form>
+          <button className="btn-submit">Сохранить</button>
+        </form>
+      </Modal>
 
       <ul>
         {banners.map((banner) => (

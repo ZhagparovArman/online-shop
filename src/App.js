@@ -1,18 +1,21 @@
 import { useState, useEffect } from "react";
-import Banners from "./components/admin/Banners";
-import Categories from "./components/admin/Categories";
-import Products from "./components/admin/Products";
-import SubCategories from "./components/admin/SubCategories";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import firebase from "./firebase";
+import Admin from "./pages/Admin";
+import Main from "./pages/Main";
 
 function App() {
   return (
-    <>
-      {/* <Categories />
-      <SubCategories />
-      <Banners /> */}
-      <Products />
-    </>
+    <Router>
+      <>
+        <Link to="/admin">Admin</Link>
+        <Switch>
+          <Route exact path="/" component={Main} />
+
+          <Route path="/admin" component={Admin} />
+        </Switch>
+      </>
+    </Router>
   );
 }
 

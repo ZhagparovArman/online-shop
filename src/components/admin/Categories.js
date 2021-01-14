@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import firebase from "../../firebase";
 import Category from "./Category";
+import Modal from "../shared/Modal";
+import "../../assets/sass/admin/shared.scss";
 
 const Categories = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState("");
   const [feature, setFeature] = useState("");
   const [description, setDescription] = useState("");
@@ -38,26 +41,35 @@ const Categories = () => {
   };
   return (
     <div className="categories">
-      <form onSubmit={onCreate}>
-        <input
-          type="text"
-          placeholder="Название"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Характеристика"
-          value={feature}
-          onChange={(e) => setFeature(e.target.value)}
-        />
-        <textarea
-          placeholder="Описание"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <button>Создать категорию</button>
-      </form>
+      <h1>Категорий</h1>
+      <button className="open-modal" onClick={() => setIsOpen(true)}>
+        Создать категорию
+      </button>
+      <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+        <button className="btn-close" onClick={() => setIsOpen(false)}>
+          X
+        </button>
+        <form onSubmit={onCreate}>
+          <input
+            type="text"
+            placeholder="Название"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Характеристика"
+            value={feature}
+            onChange={(e) => setFeature(e.target.value)}
+          />
+          <textarea
+            placeholder="Описание"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <button className="btn-submit">Сохранить</button>
+        </form>
+      </Modal>
       {categories.map((category) => {
         return (
           <Category

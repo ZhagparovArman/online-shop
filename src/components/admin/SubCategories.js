@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import firebase from "../../firebase";
 import SubCategory from "./SubCategory";
+import Modal from "../shared/Modal";
+import "../../assets/sass/admin/shared.scss";
 
 const SubCategories = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
   const [feature, setFeature] = useState("");
@@ -44,40 +47,50 @@ const SubCategories = () => {
   };
   return (
     <div className="sub-categories">
-      <form onSubmit={onCreate}>
-        <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-          name="categories"
-        >
-          <option defaultValue="">не созданы</option>
-          {categories.map((category) => {
-            return (
-              <option key={category.id} value={category.name}>
-                {category.name}
-              </option>
-            );
-          })}
-        </select>
-        <input
-          type="text"
-          placeholder="Название"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Характеристика"
-          value={feature}
-          onChange={(e) => setFeature(e.target.value)}
-        />
-        <textarea
-          placeholder="Описание"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <button>Создать подкатегорию</button>
-      </form>
+      <h1>Подкатегорий</h1>
+      <button className="open-modal" onClick={() => setIsOpen(true)}>
+        Создать подкатегорию
+      </button>
+      <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+        <button className="btn-close" onClick={() => setIsOpen(false)}>
+          X
+        </button>
+        <form onSubmit={onCreate}>
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            name="categories"
+          >
+            <option defaultValue="">не созданы</option>
+            {categories.map((category) => {
+              return (
+                <option key={category.id} value={category.name}>
+                  {category.name}
+                </option>
+              );
+            })}
+          </select>
+          <input
+            type="text"
+            placeholder="Название"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Характеристика"
+            value={feature}
+            onChange={(e) => setFeature(e.target.value)}
+          />
+          <textarea
+            placeholder="Описание"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <button className="btn-submit">Сохранить</button>
+        </form>
+      </Modal>
+
       {subCategories.map((subCategory) => {
         return (
           <SubCategory

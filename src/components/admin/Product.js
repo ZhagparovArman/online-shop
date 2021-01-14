@@ -115,23 +115,26 @@ const Product = ({ product, categories }) => {
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
+      {console.log(feature)}
       {feature.map((feat) => {
-        <div>
-          <input
-            type="text"
-            placeholder="название характеристики"
-            value={feat.title}
-            onChange={(e) => updateTitle(e)}
-          />
-          <input
-            placeholder="значение характеристики"
-            value={feat.value}
-            onChange={(e) => updateValue(e)}
-          />
-          <button onClick={(e) => updateFeature(e, feat)}>
-            update feature
-          </button>
-        </div>;
+        return (
+          <div>
+            <input
+              type="text"
+              placeholder="название характеристики"
+              value={feat.title}
+              // onChange={(e) => updateTitle(e)}
+            />
+            <input
+              placeholder="значение характеристики"
+              value={feat.value}
+              // onChange={(e) => updateValue(e)}
+            />
+            <button onClick={(e) => updateFeature(e, feat)}>
+              update feature
+            </button>
+          </div>
+        );
       })}
 
       <input
