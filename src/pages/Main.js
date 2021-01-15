@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import About from "../components/main/About";
 import Catalog from "../components/main/Catalog";
@@ -5,8 +6,24 @@ import Footer from "../components/main/Footer";
 import Header from "../components/main/Header";
 import ProductItem from "../components/main/ProductItem";
 import Products from "../components/main/Products";
+import firebase from "../firebase";
+
+const db = firebase.firestore();
 
 const Main = () => {
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {}, []);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const products = await db.collection("products").get();
+      setProducts(products.docs.map((doc) => ({ ...doc.data() })));
+    };
+    fetchProducts();
+  }, []);
+  console.log(products);
   return (
     <>
       <div class="overflow"></div>
@@ -54,6 +71,31 @@ const Main = () => {
           <div class="container">
             <h2 class="title popular__title">Популярные товары</h2>
             <div class="popular__list">
+              {products.map(
+                (product) =>
+                  product.isPopular && (
+                    <Link class="popular__item product" to="/product-item">
+                      <div class="product__img">
+                        <img
+                          class="popular__item-img product__img-item"
+                          src={product.image[0].url}
+                          alt=""
+                        />
+                      </div>
+                      ))
+                      <h3 class="popular__item-title product__title">
+                        {product.price}
+                      </h3>
+                      <p class="popular__item-descr product__descr">
+                        {product.description}
+                      </p>
+                      <button class="main-button popular__item-button product__button">
+                        Заказать
+                      </button>
+                    </Link>
+                  )
+              )}
+              {/*              
               <Link class="popular__item product" to="/product-item">
                 <div class="product__img">
                   <img
@@ -101,23 +143,7 @@ const Main = () => {
                 <button class="main-button popular__item-button product__button">
                   Заказать
                 </button>
-              </Link>
-              <Link class="popular__item product" to="/product-item">
-                <div class="product__img">
-                  <img
-                    class="popular__item-img product__img-item"
-                    src="images/item-1.png"
-                    alt=""
-                  />
-                </div>
-                <h3 class="popular__item-title product__title">32 725 ₸</h3>
-                <p class="popular__item-descr product__descr">
-                  22604 - "P.I.T." Перфоратор 26 mm 3,2 J 1000 W
-                </p>
-                <button class="main-button popular__item-button product__button">
-                  Заказать
-                </button>
-              </Link>
+              </Link> */}
             </div>
           </div>
         </section>
