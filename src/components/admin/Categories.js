@@ -3,6 +3,7 @@ import firebase from "../../firebase";
 import Category from "./Category";
 import Modal from "../shared/Modal";
 import "../../assets/sass/admin/shared.scss";
+import "../../assets/sass/admin/sub-categories.scss";
 
 const Categories = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,6 +39,7 @@ const Categories = () => {
     setName("");
     setFeature("");
     setDescription("");
+    setIsOpen(false);
   };
   return (
     <div className="categories">
@@ -70,15 +72,17 @@ const Categories = () => {
           <button className="btn-submit">Сохранить</button>
         </form>
       </Modal>
-      {categories.map((category) => {
-        return (
-          <Category
-            key={category.id}
-            category={category}
-            fetchData={fetchData}
-          />
-        );
-      })}
+      <div className="category">
+        {categories.map((category) => {
+          return (
+            <Category
+              key={category.id}
+              category={category}
+              fetchData={fetchData}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };

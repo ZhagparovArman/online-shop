@@ -55,13 +55,15 @@ const Banners = () => {
       },
       subCategory: selectedSubCategory,
     });
+    fetchBanners();
+  };
+
+  const fetchBanners = async () => {
+    const banners = await db.collection("banners").get();
+    setBanners(banners.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
   useEffect(() => {
-    const fetchBanners = async () => {
-      const banners = await db.collection("banners").get();
-      setBanners(banners.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
     fetchBanners();
   }, []);
 
@@ -116,15 +118,16 @@ const Banners = () => {
         </form>
       </Modal>
 
-      <ul>
+      <div className="banner-grid">
         {banners.map((banner) => (
           <Banner
             key={banner.id}
             subCategories={subCategories}
             banner={banner}
+            fetchBanners={fetchBanners}
           />
         ))}
-      </ul>
+      </div>
     </>
   );
 };
