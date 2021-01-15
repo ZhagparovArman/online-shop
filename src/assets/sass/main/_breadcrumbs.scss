@@ -1,0 +1,25 @@
+.breadcrumbs {
+    margin-bottom: 40px;
+    color: #000;
+    &__list-item {
+        display: inline-block;
+        padding-right: 16px;
+        margin-right: 10px;
+        position: relative;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 1.15;
+        &::after {
+            content: ">";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        &:last-child::after {
+            display: none;
+        }
+
+    }
+}
