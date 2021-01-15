@@ -83,7 +83,7 @@ const Banners = () => {
             onChange={(e) => setSelectedSubCategory(e.target.value)}
             name="categories"
           >
-            <option defaultValue="">не созданы</option>
+            <option defaultValue="">не выбрано</option>
             {subCategories.map((subCategory) => {
               return (
                 <option key={subCategory.id} value={subCategory.name}>

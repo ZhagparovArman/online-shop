@@ -65,7 +65,7 @@ const SubCategories = () => {
             onChange={(e) => setSelectedCategory(e.target.value)}
             name="categories"
           >
-            <option defaultValue="">не созданы</option>
+            <option defaultValue="">не выбрано</option>
             {categories.map((category) => {
               return (
                 <option key={category.id} value={category.name}>

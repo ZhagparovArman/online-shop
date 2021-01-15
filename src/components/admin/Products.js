@@ -3,6 +3,7 @@ import firebase from "../../firebase";
 import Product from "./Product";
 import Modal from "../shared/Modal";
 import "../../assets/sass/admin/shared.scss";
+import "../../assets/sass/admin/banners.scss";
 
 const db = firebase.firestore();
 
@@ -97,7 +98,7 @@ const Products = () => {
             onChange={(e) => setSelectedCategory(e.target.value)}
             name="categories"
           >
-            <option defaultValue="">не созданы</option>
+            <option defaultValue="">не выбрано</option>
             {categories.map((сategory) => {
               return (
                 <option key={сategory.id} value={сategory.name}>
@@ -163,9 +164,11 @@ const Products = () => {
           <button className="btn-submit">Сохранить</button>
         </form>
       </Modal>
-      {products.map((product) => (
-        <Product key={product.id} product={product} categories={categories} />
-      ))}
+      <div className="banner-grid">
+        {products.map((product) => (
+          <Product key={product.id} product={product} categories={categories} />
+        ))}
+      </div>
     </>
   );
 };
