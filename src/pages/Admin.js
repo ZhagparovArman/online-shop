@@ -1,15 +1,36 @@
-import { Route, Link, Switch } from "react-router-dom";
+import { useState } from "react";
+import { Route, Link, Switch, useHistory } from "react-router-dom";
 import Categories from "../components/admin/Categories";
 import SubCategories from "../components/admin/SubCategories";
 import Banners from "../components/admin/Banners";
 import Products from "../components/admin/Products";
-import "../assets/sass/admin/admin.scss";
+import firebase from "../firebase";
+import "../assets/scss/admin.scss";
 
 const Admin = ({ match }) => {
+  const [notification, setNotification] = useState("");
+  let history = useHistory();
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        setNotification("Logged out");
+        setTimeout(() => {
+          setNotification("");
+        }, 2000);
+      });
+    localStorage.clear();
+    history.push("/auth");
+  };
   return (
     <div>
       <div className="logout">
-        <button className="btn btn--primary">Выйти</button>
+        <button className="btn btn--primary" onClick={(e) => handleLogout(e)}>
+          Выйти
+        </button>
       </div>
 
       <div className="sidenav">

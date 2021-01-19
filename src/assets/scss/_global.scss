@@ -7,6 +7,7 @@ html {
 *::after {
   box-sizing: inherit;
 }
+
 html,
 body {
   height: 100%;
@@ -14,7 +15,7 @@ body {
 }
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -23,6 +24,7 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   font-size: 17px;
+
   &.active {
     overflow: hidden;
   }
@@ -51,6 +53,7 @@ button:focus,
 input:focus {
   outline: transparent;
 }
+
 // Для скрытия стрелок в input
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -59,7 +62,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type="number"] {
+input[type=number] {
   -moz-appearance: textfield;
 }
 
@@ -77,9 +80,44 @@ textarea:focus {
 button {
   cursor: pointer;
 }
+
 * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
+.main-button {
+  border: 1px solid #FF5B5B;
+  border-radius: 2px;
+  color: #FF5B5B;
+  background: #fff;
+  font-size: 14px;
+  line-height: 1.15;
+  letter-spacing: 0.125em;
+  transition: all .2s;
+
+  &:hover {
+    color: #fff;
+    background: #FF5B5B;
+  }
+}
+
+.red-button {
+  border: 1px solid #fff;
+  border-radius: 2px;
+  color: #fff;
+  background: #FF5B5B;
+  font-size: 14px;
+  line-height: 1.15;
+  transition: all .2s;
+
+  &:hover {
+    border: 1px solid #FF5B5B;
+
+    color: #FF5B5B;
+    background: #fff;
+  }
+}
+
 .black-button {
   background: transparent;
   font-size: 14px;
@@ -88,7 +126,7 @@ button {
   padding: 12px 22px;
   border: 1px solid #000000;
   border-radius: 2px;
-  transition: all 0.2s;
+  transition: all .2s;
 
   &:hover {
     background: #000;
@@ -98,14 +136,15 @@ button {
 
 .checkbox {
   cursor: pointer;
+  
   &__input {
     position: absolute;
     z-index: -1;
     opacity: 0;
   }
 
-  &__input:checked + span::after {
-    // background-image: url('../images/check.svg');
+  &__input:checked+span::after {
+    background-image: url('../images/check.svg');
     background-position: center;
     background-size: 70%;
     background-repeat: no-repeat;
@@ -128,10 +167,36 @@ button {
       height: 18px;
     }
   }
+  &.admin{
+    span {
+      width: 100%;
+      position: relative;
+      padding-right: 33px;
+      padding-left: 0;
+      &::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        left: auto;
+        top: 50%;
+        transform: translateY(-50%);
+        border: 0.5px solid #000000;
+        border-radius: 4px;
+        width: 18px;
+        height: 18px;
+      }
+    }
+    .checkbox__input:checked + span::after {
+      
+      background-color: #000;
+    }
+  }
 }
+
 .wrapper {
   position: relative;
   z-index: 11;
+
   &::after {
     content: "";
     position: fixed;
@@ -139,12 +204,13 @@ button {
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, .5);
     z-index: 11;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s;
+    transition: all .3s;
   }
+
   &.active::after {
     opacity: 1;
     visibility: visible;
@@ -159,10 +225,12 @@ button {
   position: relative;
   z-index: 25;
   background-color: #fff;
+
   &__top {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
   }
 
   &__top-left {
@@ -171,36 +239,47 @@ button {
 
     &__logo {
       margin-right: 32px;
+
+      img {
+        width: 100%;
+      }
     }
   }
 
   &__top-search {
-    &:hover {
-    }
+
+
+    &:hover {}
   }
+
   &__top-burger {
     display: none;
   }
+
   &__nav {
-    margin-top: 38px;
+    margin-top: 20px;
 
     border-top: 1px solid rgba(180, 180, 180, 0.5);
+
   }
+
   &__mobile {
     display: none;
   }
 }
+
 .search {
   display: flex;
   width: auto;
-  transition: all 0.5s;
+  transition: all .5s;
+
   &__input,
   &__button {
-    background: #ffffff;
-    border: 1px solid #b4b4b4;
+    background: #FFFFFF;
+    border: 1px solid #B4B4B4;
     border-radius: 4px;
     padding: 10px 14px;
-    transition: all 0.5s;
+    transition: all .5s;
   }
 
   &__input {
@@ -218,10 +297,12 @@ button {
     border-bottom-left-radius: 0;
   }
 }
+
 .nav {
   &__top {
     display: none;
   }
+
   &__list {
     display: flex;
     list-style: none;
@@ -233,13 +314,16 @@ button {
     flex: 0 0 20%;
     font-weight: 400;
     line-height: 1.15;
-    transition: all 0.3s;
+    transition: all .3s;
+
     &.nav__item-hover {
       &:hover {
         .nav__item-link {
           font-weight: 700;
-          color: #ff5b5b;
+          color: #FF5B5B;
+
         }
+
         .nav__item-menu {
           opacity: 1;
           visibility: visible;
@@ -250,7 +334,7 @@ button {
 
   &__item-link {
     display: inline-block;
-    padding: 35px 0;
+    padding: 25px 0;
     width: 100%;
   }
 
@@ -260,16 +344,18 @@ button {
     opacity: 0;
     visibility: hidden;
     position: absolute;
-    top: 218px;
+    top: 160px;
     right: 0;
     left: 0;
     width: 100%;
-    padding: 55px 0 30px;
+    padding: 30px 0 30px;
     background-color: #fff;
+
     .container {
       position: relative;
       z-index: 15;
     }
+
     &:hover {
       opacity: 1;
       visibility: visible;
@@ -280,6 +366,7 @@ button {
       font-size: 21px;
       line-height: 1.2;
       color: #000;
+      margin-bottom: 30px;
     }
 
     &__list {
@@ -288,15 +375,15 @@ button {
       justify-content: space-between;
       list-style: none;
       padding: 0;
-      margin: 0;
     }
 
     &__item {
-      margin: 50px 0 10px 0;
+      margin: 10px 0;
       line-height: 1.15;
       flex: 0 0 24%;
+
       &.nav__item-menu__item--active {
-        color: #ff5b5b;
+        color: #FF5B5B;
       }
     }
   }
@@ -307,11 +394,11 @@ button {
 // FOOTER
 
 .footer {
-  background: #fbfbfb;
-  padding: 60px 0 0;
+  background: #FBFBFB;
+  padding: 40px 0 0;
 
   &__wrapper {
-    margin-bottom: 55px;
+    margin-bottom: 35px;
   }
 
   &__list {
@@ -322,7 +409,7 @@ button {
   }
 
   &__item-title {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     font-weight: 500;
     font-size: 21px;
     line-height: 1.2;
@@ -333,13 +420,13 @@ button {
 
     &__item {
       line-height: 1.15;
-      margin-bottom: 25px;
+      margin-bottom: 15px;
     }
   }
 
   &__contacts {
     text-align: center;
-    border: 1px solid #dadada;
+    border: 1px solid #DADADA;
     border-radius: 4px;
     padding: 35px 100px 55px;
   }
@@ -362,8 +449,9 @@ button {
     margin-bottom: 12px;
   }
 
+
   &__contacts-email {
-    color: #ff5b5b;
+    color: #FF5B5B;
     margin-bottom: 75px;
     line-height: 1.1;
   }
@@ -381,7 +469,7 @@ button {
 
   &__bottom-text {
     letter-spacing: -0.01em;
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, .5)
   }
 }
 
@@ -391,21 +479,7 @@ button {
   margin: 0 auto;
 }
 
-.main-button {
-  border: 1px solid #ff5b5b;
-  border-radius: 2px;
-  color: #ff5b5b;
-  background: #fff;
-  font-size: 14px;
-  line-height: 1.15;
-  letter-spacing: 0.125em;
-  transition: all 0.2s;
 
-  &:hover {
-    color: #fff;
-    background: #ff5b5b;
-  }
-}
 
 .title {
   font-weight: bold;
@@ -415,8 +489,10 @@ button {
 
 .product {
   padding: 60px 25px 40px;
-  border: 1px solid #b4b4b4;
+  border: 1px solid #B4B4B4;
   border-radius: 4px 0px 0px 4px;
+  margin: 5px;
+
   &__img {
     margin: 0 auto 65px;
     text-align: center;

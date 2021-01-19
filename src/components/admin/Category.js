@@ -1,7 +1,6 @@
 import { useState } from "react";
 import firebase from "../../firebase";
 import Modal from "../shared/Modal";
-import "../../assets/sass/admin/shared.scss";
 
 const Category = ({ category, fetchData }) => {
   const [isOpen, setIsOpen] = useState(false);

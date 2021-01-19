@@ -4,23 +4,23 @@
   }
 
   .popup {
-    padding: 40px 50px;
+    padding: 40px 30px;
     overflow: auto;
     max-height: 90vh;
 
     &__img {
-      height: 100px;
+      height: 80px;
       margin-bottom: 15px;
     }
 
     &__title {
       font-weight: 500;
-      font-size: 24px;
+      font-size: 22px;
       margin-bottom: 20px;
     }
 
     &__form-input {
-      padding: 10px 20px;
+      padding: 8px 20px;
       font-size: 18px;
       border: 1px solid #000;
       border-radius: 4px;
@@ -31,6 +31,34 @@
       font-size: 18px;
       padding: 10px 50px;
       letter-spacing: normal;
+    }
+  }
+
+  .header {
+    &__top {
+    }
+
+    &__top-left {
+      &__logo {
+        width: 150px;
+      }
+    }
+  }
+
+  .search {
+    &__input,
+    &__button {
+      padding: 6px 12px;
+    }
+  }
+
+  .nav {
+    &__item-link {
+      padding: 20px 0;
+    }
+
+    &__item-menu {
+      top: 155px;
     }
   }
 
@@ -76,6 +104,7 @@
     &__title {
       margin-bottom: 20px;
     }
+
     &__item {
       font-size: 19px;
     }
@@ -148,7 +177,7 @@
 
   .nav {
     &__item-menu {
-      top: 215px;
+      top: 175px;
     }
   }
 
@@ -189,6 +218,12 @@
     }
   }
 
+  .popular {
+    &__item {
+      flex: 0 0 45%;
+    }
+  }
+
   .products {
     &__content {
       justify-content: space-between;
@@ -199,7 +234,7 @@
     }
 
     &__content-item {
-      flex: 0 0 50%;
+      flex: 0 0 45%;
     }
   }
 
@@ -224,6 +259,7 @@
 
       .swiper-container {
         max-height: 250px;
+
         .swiper-slide img {
           width: auto;
           height: 100%;
@@ -244,6 +280,53 @@
 }
 
 @media (max-width: 950px) {
+  .file {
+    padding: 5px;
+  }
+  .form {
+    &__item-list {
+      &__item {
+        min-height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      &__item-text {
+        font-size: 14px;
+        margin-top: 0;
+        svg {
+          width: 15px;
+          height: 15px;
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+  .admin-popup {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-width: auto;
+    padding: 70px 20px;
+    transform: translate(0, 0);
+    overflow-y: auto;
+    .nav {
+      left: 0;
+      right: 0;
+      width: 100%;
+      transform: translate(0);
+    }
+  }
+  .banner-popup {
+    &__form-item {
+      &.file {
+        margin: 0;
+      }
+    }
+  }
+
   .search {
     width: 100%;
 
@@ -263,6 +346,7 @@
     overflow-y: auto;
     max-height: 100vh;
     transform: translate(0, 0);
+
     &__img {
       height: 80px;
     }
@@ -315,7 +399,7 @@
         position: absolute;
         right: 0;
         top: 50%;
-        // background-image: url("../images/arrow-down.svg");
+        background-image: url("../images/arrow-down.svg");
         background-repeat: no-repeat;
         transform: translateY(-50%) rotate(-90deg);
         transition: transform 0.3s;
@@ -342,19 +426,6 @@
     }
   }
 
-  .product {
-    padding: 30px 25px;
-
-    &__img {
-      height: 150px;
-      margin: 0 auto 30px;
-
-      img {
-        width: auto;
-      }
-    }
-  }
-
   .header {
     margin-bottom: 20px;
 
@@ -365,10 +436,6 @@
     &__top-left {
       &__logo {
         width: 120px;
-
-        img {
-          width: 100%;
-        }
       }
 
       &__call {
@@ -440,10 +507,10 @@
   }
 
   .footer {
-    padding: 30px 0 0;
+    padding: 20px 0 0;
 
     &__item-title {
-      padding: 25px 0;
+      padding: 15px 0;
       margin-bottom: 0;
     }
 
@@ -453,7 +520,12 @@
     }
 
     &__contacts {
-      margin-top: 25px;
+      margin-top: 15px;
+      padding: 25px 50px 15px;
+    }
+
+    &__contacts-email {
+      margin-bottom: 15px;
     }
   }
 
@@ -492,6 +564,10 @@
       flex-direction: column;
       height: 100%;
       justify-content: space-around;
+
+      .container {
+        width: 100%;
+      }
     }
 
     &__item {
@@ -515,15 +591,12 @@
         visibility: hidden;
       }
 
-      .container {
-        width: 100%;
-      }
-
       &.active {
-        padding: 20px 0;
+        padding: 10px 0;
         opacity: 1;
         visibility: visible;
         max-height: 1000px;
+
         .nav__item-menu__list {
           max-height: 1000px;
         }
@@ -540,6 +613,7 @@
         transition: max-height 0.3s;
         flex-wrap: nowrap;
       }
+
       &__item {
         flex: 0 0 100%;
         margin: 10px 0;
@@ -572,11 +646,24 @@
     }
   }
 
+  .product {
+    padding: 30px 25px;
+
+    &__img {
+      height: 150px;
+      margin: 0 auto 30px;
+
+      img {
+        width: auto;
+      }
+    }
+  }
+
   .popular {
     padding: 0 0 30px;
 
     &__item {
-      flex: 0 0 50%;
+      flex: 0 0 45%;
     }
   }
 
@@ -605,6 +692,21 @@
 
     &__top {
       margin-bottom: 30px;
+    }
+
+    &__top-filter {
+      &__text {
+        margin-right: 10px;
+      }
+
+      &__button {
+        &::after {
+          content: "";
+        }
+
+        padding: 0;
+        margin: 0 5px;
+      }
     }
 
     &__content {
@@ -639,7 +741,8 @@
     }
 
     &__content-item {
-      max-width: 375px;
+      max-width: 100%;
+      flex: 1 0 45%;
 
       &__img {
         img {
@@ -742,6 +845,96 @@
   .body {
     .title {
       font-size: 22px;
+    }
+  }
+  .auth {
+    &__title {
+      margin-bottom: 20px;
+    }
+
+    &__form {
+      min-width: 100%;
+    }
+
+    &__form-item {
+      display: flex;
+      align-items: stretch;
+      flex-direction: column;
+      font-size: 17px;
+      position: relative;
+
+      &__label {
+        margin-bottom: 15px;
+      }
+
+      &__input {
+        margin-bottom: 15px;
+        padding: 10px 20px;
+      }
+    }
+
+    &__form-submit {
+      font-size: 17px;
+    }
+  }
+  .form {
+    &__item-list {
+      justify-content: flex-start;
+
+      &__item {
+        flex: 0 0 40%;
+        margin: 10px;
+        max-width: 140px;
+        img {
+          height: 80%;
+          width: 55%;
+        }
+      }
+    }
+    &__item-title {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    &__submit {
+      padding: 14px 50px;
+    }
+  }
+  .admin-popup {
+    .nav {
+      &__item-link {
+        font-size: 17px;
+      }
+      &__item-menu {
+        &__item {
+          font-size: 17px;
+        }
+      }
+    }
+    &__checkbox-item {
+      font-size: 14px;
+    }
+    &__checkbox-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    &__checkbox-button {
+      padding: 5px 0;
+      font-size: 16px;
+    }
+  }
+  .catalog-popup {
+    &__title {
+      font-size: 18px;
+    }
+  }
+  .products-popup {
+    &__form-bottom {
+      align-items: center;
+      flex-direction: column;
+      &__button {
+        margin-top: 10px;
+        padding: 14px 50px;
+      }
     }
   }
 

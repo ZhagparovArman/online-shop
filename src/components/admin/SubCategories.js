@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import firebase from "../../firebase";
 import SubCategory from "./SubCategory";
 import Modal from "../shared/Modal";
-import "../../assets/sass/admin/shared.scss";
-import "../../assets/sass/admin/sub-categories.scss";
 
 const SubCategories = () => {
   const [isOpen, setIsOpen] = useState(false);

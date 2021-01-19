@@ -2,13 +2,11 @@ import { useState, useEffect } from "react";
 import firebase from "../../firebase";
 import Category from "./Category";
 import Modal from "../shared/Modal";
-import "../../assets/sass/admin/shared.scss";
-import "../../assets/sass/admin/sub-categories.scss";
 
 const Categories = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState("");
-  const [feature, setFeature] = useState("");
+  const [feature, setFeature] = useState([]);
   const [description, setDescription] = useState("");
   const [categories, setCategories] = useState([]);
 

@@ -7,7 +7,8 @@ import Header from "../components/main/Header";
 import ProductItem from "../components/main/ProductItem";
 import Products from "../components/main/Products";
 import firebase from "../firebase";
-
+import "../assets/scss/style.scss";
+import { Helmet } from "react-helmet";
 const db = firebase.firestore();
 
 const Main = () => {
@@ -26,6 +27,7 @@ const Main = () => {
   console.log(products);
   return (
     <>
+      <Helmet></Helmet>
       <div class="overflow"></div>
       {/* @@include('components/_header.html') */}
       <Header />

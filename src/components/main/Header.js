@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import logo from "../../assets/images/logo.png";
 const Header = () => {
   return (
     <div>
+      <Helmet></Helmet>
       <header class="header">
         <div class="container">
           <div class="header__top">
             <div class="header__top-left">
               <a class="header__top-left__logo logo" href="#">
-                <img src="images/logo.png" alt="" />
+                <img src={logo} alt="" />
               </a>
               <a class="header__top-left__call" href="tel:+77760000066">
                 +7 776 000 00 66

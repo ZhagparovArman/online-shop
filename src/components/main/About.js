@@ -1,11 +1,12 @@
-import "../../assets/sass/main/style.scss";
 import Footer from "./Footer";
 import Header from "./Header";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const About = () => {
   return (
     <div>
+      <Helmet></Helmet>
       <div class="overflow"></div>
       {/* @@include('components/_header.html') */}
       <Header />

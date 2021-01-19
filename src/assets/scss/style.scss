@@ -178,7 +178,7 @@
     }
 
     &__item {
-        flex: 0 0 25%;
+        flex: 0 0 24%;
     }
 }
 
@@ -407,10 +407,12 @@
         flex-basis: 74%;
         flex-wrap: wrap;
         list-style: none;
+        align-items: flex-start;
     }
 
     &__content-item {
-        flex: 0 0 33.333%
+        margin: 5px;
+        flex: 0 0 30.333%
     }
 }
 
@@ -443,10 +445,12 @@
             width: 100%;
             text-align: center;
             .swiper-wrapper{
+                max-height: 100%;
             }
             .swiper-slide{
                 img {
                     width: 80%;
+                    height: 100%;
                 }
             }
         }

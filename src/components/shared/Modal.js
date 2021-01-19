@@ -9,6 +9,9 @@ const MODAL_STYLES = {
   backgroundColor: "#FFF",
   padding: "50px",
   zIndex: 1000,
+  minWigth: "580px",
+  height: "70%",
+  overflow: "auto",
 };
 
 const OVERLAY_STYLES = {

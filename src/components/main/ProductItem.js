@@ -2,10 +2,12 @@ import { Link } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
 import Popup from "./Popup";
+import { Helmet } from "react-helmet";
 
 const ProductItem = () => {
   return (
     <div>
+      <Helmet></Helmet>
       <div class="overflow"></div>
       {/* @@include('components/_header.html') @@include('components/_popup.html') */}
       <Header />

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import firebase from "../../firebase";
 import Modal from "../shared/Modal";
-import "../../assets/sass/admin/shared.scss";
 
 const db = firebase.firestore();
 const storageRef = firebase.storage().ref("images");

@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import firebase from "../../firebase";
 import Product from "./Product";
 import Modal from "../shared/Modal";
-import "../../assets/sass/admin/shared.scss";
-import "../../assets/sass/admin/banners.scss";
 
 const db = firebase.firestore();
 
